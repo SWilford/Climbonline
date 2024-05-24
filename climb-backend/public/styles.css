@@ -73,3 +73,50 @@ body {
    .btn:hover::before {
     transform: translateX(0);
    }
+
+   .form-container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+  }
+  
+  .form {
+    margin: 0 20px;
+  }
+  
+  .form h2 {
+    margin-bottom: 20px;
+  }
+  
+  .form div {
+    margin-bottom: 10px;
+  }
+  
+  .form label {
+    display: block;
+    margin-bottom: 5px;
+  }
+  
+  .form input[type="email"],
+  .form input[type="password"] {
+    width: 100%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+    box-sizing: border-box;
+  }
+  
+  .form button {
+    padding: 10px 20px;
+    font-size: 16px;
+    border: none;
+    background-color: #2ecc71;
+    color: white;
+    border-radius: 5px;
+    cursor: pointer;
+  }
+  
+  .form button:hover {
+    background-color: #27ae60;
+  }

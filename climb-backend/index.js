@@ -4,6 +4,7 @@ const passport = require('passport');
 const mongoose = require('mongoose');
 const passportConfig = require('./passport-config');
 const path = require('path');
+const User = require('./models/user');
 
 const app = express();
 const PORT = process.env.PORT || 3000; // Set the port number
@@ -30,9 +31,37 @@ app.get('/', (req, res) => {
 
 app.post('/login', passport.authenticate('local', {
   successRedirect: '/game', // Redirect to the game page on successful login
-  failureRedirect: '/', // Redirect back to the main menu on failed login
+  failureRedirect: '/login', // Redirect back to the main menu on failed login
   failureFlash: true // Enable flash messages for failed login attempts
 }));
+
+app.get('/login', (req, res) => {
+  res.sendFile(__dirname+'/public/login.html');
+})
+
+app.get('/logout', (req, res) => {
+  req.logOut();
+  res.redirect('/')
+})
+
+
+app.post('/register', async (req, res) => {
+  try {
+    const { email, password } = req.body;
+    const existingUser = await User.findOne({ email });
+
+    if (existingUser) {
+      res.redirect('/login'); // Redirect back to login if user already exists
+    } else {
+      const newUser = new User({ email, password });
+      await newUser.save();
+      res.redirect('/login'); // Redirect to login page after successful registration
+    }
+  } catch (error) {
+    console.error(error);
+    res.status(500).send('Internal Server Error');
+  }
+});
 
 // Start the server
 app.listen(PORT, () => {
