@@ -18,7 +18,17 @@ body {
     left: 0;
     width: 100%;
     height: 100%;
-    background-image: url('img/menuBg.jpg'); /* Replace 'your-background-image.jpg' with your actual image */
+    background-image: url('img/menuBg.jpg'); 
+    background-size: cover;
+}
+
+.loginBackgroundImage {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('img/loginBackground.jpeg');
     background-size: cover;
 }
 
